@@ -1,6 +1,6 @@
-1-Register a user.
-2-Login a user.
-3- Who i am.
+1-Register a user.-Done 
+2-Login a user. - Done
+3- Who i am. -Done
 4-Add new product.
 5-Update a product.
 6-Get all products.

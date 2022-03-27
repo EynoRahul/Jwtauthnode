@@ -5,5 +5,6 @@
      APP_PORT,
      DEBUG_MODE,
      DB_URL,
-     JWT_SECRET
- } = process.env;
+     JWT_SECRET,
+     REFRESH_SECRET
+ } = process.env; 

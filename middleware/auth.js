@@ -8,6 +8,7 @@ const auth = async (req,res,next) => {
   }
   
   const token = authHeader.split(' ',)[1];
+  console.log(token);
   
   try {
       const {_id,role} = await Jwtservice.verify(token);
@@ -16,14 +17,11 @@ const auth = async (req,res,next) => {
           _id,
           role,
       }
-      console.log(req.user);
       req.user = user;
-
       next();
   } catch (err) {
       return next(CustomErrorHandler.unAuthrorized());
   }
   
 }
-
 export default auth;

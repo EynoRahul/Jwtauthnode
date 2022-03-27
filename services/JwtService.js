@@ -7,7 +7,7 @@ class Jwtservice {
     }
 
     static verify(token,secret=JWT_SECRET) {
-        return jwt.verify(token,secret,{expiresIn:expiry})
+        return jwt.verify(token,secret)
        }
 }
 
