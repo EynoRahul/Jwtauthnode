@@ -9,8 +9,6 @@ const refreshController = {
   async refresh(req,res,next){
     //validation
 
-    console.log('this is the new test file');
-
     const refreshSchema = Joi.object(
         {
             refresh_token: Joi.string().required(),

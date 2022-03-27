@@ -6,9 +6,10 @@ import bcrypt from 'bcrypt';
 import {REFRESH_SECRET} from '../../config';
 
 const loginController = {
+
  async login(req,res,next){
     //validation
-    const loginSchema = Joi.object(
+       const loginSchema = Joi.object(
         {
             email: Joi.string().email().required(),
             password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
@@ -43,6 +44,26 @@ const loginController = {
         } catch (err) {
            return next(err); 
         }
+ },
+
+ async logout(req,res,next) {
+      
+    const refreshSchema = Joi.object(
+        {
+            refresh_token: Joi.string().required(),
+        });
+        const {error} = refreshSchema.validate(req.body);
+
+        if(error) {
+           return next(error); 
+        }
+
+     try {
+       await RefreshToken.deleteOne({token:req.body.refresh});
+     } catch (err) {
+         return next(new Error('SOmething went wrong in the data base'));
+     }
+     res.json({status:1})
  }
 };
 

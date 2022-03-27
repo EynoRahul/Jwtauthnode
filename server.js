@@ -6,6 +6,7 @@ import errorHandler from './middleware/errorHandler';
 const app = express();
 
 import routes from './routes';
+import path from 'path';
 
 console.log(DB_URL);
 
@@ -15,6 +16,11 @@ db.on('error',console.error.bind(console,'connection error:'));
 db.once('open',() => {
     console.log('db connected....');
 });
+
+global.appRoot = path.resolve(__dirname);
+app.use(express.urlencoded({extended:false}))
+app.use(express.json());
+app.use('/api',routes);
 
 app.use(express.json());
 app.use('/api',routes);
